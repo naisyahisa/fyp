@@ -1,0 +1,28 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="content-section">
+        <form method="POST">
+            <!-- hidden tag cross site request forgery tag - security purpose -->
+            {% csrf_token %}
+            <!-- to group related element -->
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Join Today</legend>
+                <!-- vertical bar to specify filter and style use -->
+                {{form|crispy}}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Sign Up</button>
+            </div>
+         </form>
+         <!-- pd = padding top -->
+         <div class="border-top pt-3">
+             <!-- muted to dull the text -->
+            <small class="text-muted">  
+                <!-- ml = margin left, a = hyperlink, href = # brings to the location -->
+                Already Have An Account? <a class="ml-2" href="{% url 'login' %}">Sign In</a>
+            </small>
+        </div>
+    <div>   
+    
+{% endblock content %}
