@@ -1,3 +1,4 @@
+import datetime
 from django.db import models
 from django.utils import timezone
 #one user can author posts - one to many relationship, one post can have one author
@@ -13,6 +14,18 @@ class Post(models.Model):
     #passed in the user table, on-delete if the user got deleted, also posts got deleted
     author = models.ForeignKey(User, on_delete=models.CASCADE)
 
-    #to print out db, dunder method
+    #to print out db, dunder method, charfield
     def __str__(self):
         return self.title 
+
+    # def was_published_recently(self):
+    #     return self.date_posted >= timezone.now() - datetime.timedelta(days =1)
+
+class Vaksinasi(models.Model):
+    district = models.CharField(max_length=30)
+    year = models.IntegerField()
+    vac_able = models.IntegerField()
+    vac_done = models.IntegerField()
+
+    def __str__(self):
+        return self.district

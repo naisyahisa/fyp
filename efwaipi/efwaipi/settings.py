@@ -10,13 +10,13 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
-from pathlib import Path
+from pathlib import Path, PureWindowsPath
 from django import apps
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+# C:\Users\LENOVO\projects\efwaipi
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'blog.apps.BlogConfig',
     'users.apps.UsersConfig',
     'crispy_forms',
+    'bootstrap4',
     'django.contrib.admin', # Required for helpdesk admin/maintenance
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -71,7 +72,7 @@ CORS_ORIGIN_ALLOW_ALL = False
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:8081',
 )
-
+# here, when a request of url is made for the 1st time
 ROOT_URLCONF = 'efwaipi.urls'
 
 TEMPLATES = [
@@ -114,6 +115,11 @@ DATABASES = {
         'PASSWORD': '',
         'HOST': '127.0.0.1',
         'PORT': '3306',
+        "OPTIONS": {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES', innodb_strict_mode=1",
+            'charset':'utf8mb4',
+            "autocommit": True,
+        }
     }
 }
 
@@ -156,9 +162,21 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+PROJECT_PATH = os.path.abspath(os.path.dirname(__name__))
+print('&&&&&&&&&&&&&&&&&')
+print(PROJECT_PATH)
+print('&&&&&&&&&&&&&&&&&')
+
+STATICFILES_DIRS = [
+    os.path.join(PROJECT_PATH, 'blog\\static'),
+]
+print('------------------')
+print(STATICFILES_DIRS)
+print('------------------')
+
 #default directory for django to store images, in file system not the database
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media') 
-#public url of directory, access media through browser
+#public url of directory, a ccess media through browser
 MEDIA_URL = '/media/' 
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

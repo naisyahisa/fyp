@@ -28,6 +28,7 @@ urlpatterns = [
     path('helpdesk/', user_views.helpdesk, name='helpdesk'),
     path('login/', auth_views.LoginView.as_view(template_name = 'users_act/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name = 'users_act/logout.html'), name='logout'),
+    # will go to urls py file lagi satu, blog punya
     path('', include('blog.urls')),
 ]
 
