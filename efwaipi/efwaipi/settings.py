@@ -161,18 +161,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-
-PROJECT_PATH = os.path.abspath(os.path.dirname(__name__))
-print('&&&&&&&&&&&&&&&&&')
-print(PROJECT_PATH)
-print('&&&&&&&&&&&&&&&&&')
-
+# PROJECT_PATH = os.path.abspath(os.path.dirname(__name__))
+# print(BASE_DIR)
+# C:\Users\LENOVO\projects\efwaipi
 STATICFILES_DIRS = [
-    os.path.join(PROJECT_PATH, 'blog\\static'),
+    os.path.join(BASE_DIR, 'blog\\static'),
+    # os.path.join(PROJECT_PATH, 'blog\\static'),
 ]
-print('------------------')
-print(STATICFILES_DIRS)
-print('------------------')
+# print(STATICFILES_DIRS)
+# ['C:\\Users\\LENOVO\\projects\\efwaipi\\blog\\static'] 
 
 #default directory for django to store images, in file system not the database
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media') 

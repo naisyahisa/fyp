@@ -20,7 +20,6 @@ class Post(models.Model):
 
     # def was_published_recently(self):
     #     return self.date_posted >= timezone.now() - datetime.timedelta(days =1)
-
 class Vaksinasi(models.Model):
     district = models.CharField(max_length=30)
     year = models.IntegerField()
@@ -28,4 +27,4 @@ class Vaksinasi(models.Model):
     vac_done = models.IntegerField()
 
     def __str__(self):
-        return self.district
+        return "{}-{}-{}-{}".format(self.district, self.year, self.vac_able, self.vac_done)
